@@ -1,3 +1,5 @@
+import {uniqueID} from './utils.js';
+
 /**
  * Хранилище состояния приложения
  */
@@ -38,13 +40,15 @@ class Store {
     for (const listener of this.listeners) listener();
   }
 
+  getUniqueID
+
   /**
    * Добавление новой записи
    */
   addItem() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, {code: this.state.list.length + 1, title: 'Новая запись'}]
+      list: [...this.state.list, {code: uniqueID(), title: 'Новая запись', viewsCount: 0}]
     })
   };
 
@@ -68,7 +72,10 @@ class Store {
       ...this.state,
       list: this.state.list.map(item => {
         if (item.code === code) {
-          item.selected = !item.selected;
+          if (!item.selected) item.viewsCount += 1;
+          item.selected = !item.selected;  
+        } else {
+          if (item.selected) item.selected = false;
         }
         return item;
       })

@@ -26,3 +26,38 @@ export function createElement(name, props = {}, ...children) {
 
   return element;
 }
+
+/**
+ * Генерация уникального ID
+ */
+
+function generateUniqueID() {
+  let counter = 0;
+  return function() {
+    return ++counter;
+  }
+}
+export const uniqueID = generateUniqueID();
+
+/**
+ * Склонение существительных
+ */
+
+export function inflectNouns(num, singular, twoThreeFour, plural) {
+  const stringFromNumber = num.toString();
+  const lastIndex = stringFromNumber[stringFromNumber.length - 1];
+
+  if (num >= 5 && num <=20) {
+    return `${num} ${plural}`;
+  }
+
+  if(lastIndex === '1') {
+    return `${num} ${singular}`;
+  }
+
+  if(lastIndex === '2' || lastIndex === '3' || lastIndex === '4') {
+    return `${num} ${twoThreeFour}`;
+  }
+
+  return `${num} ${plural}`;
+}
