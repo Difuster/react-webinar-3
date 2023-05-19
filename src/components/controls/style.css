@@ -1,5 +1,20 @@
 .Controls {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   padding: 20px;
+}
+
+.Controls-summary {
+  font-size: 18px;
+}
+
+.Controls-value {
+  font-weight: 700;
+  margin-left: 15px;
+  margin-right: 20px;
+}
+
+.Controls>button {
+  height: 21px;
 }
