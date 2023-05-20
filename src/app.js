@@ -35,19 +35,17 @@ function App({store}) {
   }
 
   return (
-    <>
-      <PageLayout>
-        <Head title='Магазин'/>
-        <Controls cart={cart} setIsActive={setIsActive}/>
-        <List list={list} func={callbacks.onAddItem} btnTitle='Добавить'/>
-      </PageLayout>
-      <Modal
-        cart={cart}
-        isActive={isActive}
-        setIsActive={setIsActive}
-        onDeleteItem={callbacks.onDeleteItem}
-      />
-    </>
+    <PageLayout>
+      <Head title='Магазин'/>
+      <Controls cart={cart} setIsActive={setIsActive}/>
+      <List list={list} func={callbacks.onAddItem} btnTitle='Добавить'/>
+    <Modal
+      cart={cart}
+      isActive={isActive}
+      setIsActive={setIsActive}
+      onDeleteItem={callbacks.onDeleteItem}
+    />
+    </PageLayout>
   );
 }
 

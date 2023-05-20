@@ -56,7 +56,7 @@ class Store {
           ...this.state,
           cart: this.state.cart.map(prod => {
             if (prod.code === product.code) {
-              prod.count = prod.count + 1;
+              return {...prod, count: prod.count + 1};
             }
             return prod;
           })
