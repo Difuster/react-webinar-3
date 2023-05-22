@@ -17,7 +17,9 @@ function List({list, func, btnTitle}) {
 
 List.propTypes = {
   list: PropTypes.arrayOf(PropTypes.shape({
-    code: PropTypes.number
+    code: PropTypes.number,
+    title: PropTypes.string,
+    price: PropTypes.number,
   })).isRequired,
   func: PropTypes.func,
   btnTitle: PropTypes.string,

@@ -4,6 +4,8 @@ import Controls from "./components/controls";
 import Head from "./components/head";
 import Modal from "./components/modal";
 import PageLayout from "./components/page-layout";
+import Footer from './components/modal/footer';
+import Header from './components/modal/header';
 
 /**
  * Приложение
@@ -40,11 +42,13 @@ function App({store}) {
       <Controls cart={cart} setIsActive={setIsActive}/>
       <List list={list} func={callbacks.onAddItem} btnTitle='Добавить'/>
     <Modal
-      cart={cart}
       isActive={isActive}
       setIsActive={setIsActive}
-      onDeleteItem={callbacks.onDeleteItem}
-    />
+    >
+      <Header setIsActive={setIsActive}/>
+      <List list={cart.list} func={callbacks.onDeleteItem} btnTitle='Удалить'/>
+      <Footer sum={cart.totalSum}/>
+    </Modal>
     </PageLayout>
   );
 }

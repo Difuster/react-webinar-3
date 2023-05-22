@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {cn as bem} from '@bem-react/classname';
 import './style.css';
+import { currencyFormat } from "../../utils";
 
 function Item(props){
   const cn = bem('Item');
@@ -19,7 +20,7 @@ function Item(props){
       <div className={cn('title')}>
         {props.item.title}
       </div>
-      <div className={cn('price')}>{props.item.price} ₽</div>
+      <div className={cn('price')}>{currencyFormat.format(props.item.price)}</div>
       {props.item.count ? <div className={cn('count')}>{props.item.count} <span> шт</span></div> : null}
       <div className={cn('actions')}>
         <button onClick={callbacks.func}>

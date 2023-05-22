@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import {cn as bem} from '@bem-react/classname';
 import {plural} from "../../utils";
 import './style.css';
+import { currencyFormat } from "../../utils";
 
 function Controls({cart, setIsActive}){
   const cn = bem('Controls');
-  let sum = useMemo(() => {
-    return cart.reduce((s, item) => s + item.count * item.price, 0);
-  }, [cart])
 
   return (
     <div className={cn()}>
@@ -16,8 +14,8 @@ function Controls({cart, setIsActive}){
         <p>
           В корзине: 
           <span className={cn('value')}>
-            {cart.length ?
-            `${cart.length} ${plural(cart.length, {one: 'товар', few: 'товара', many: 'товаров'})} / ${sum} ₽` :
+            {cart.goodsCount ?
+            `${cart.goodsCount} ${plural(cart.goodsCount, {one: 'товар', few: 'товара', many: 'товаров'})} / ${currencyFormat.format(cart.totalSum)}` :
             `пусто`}
           </span>
         </p>
@@ -28,12 +26,16 @@ function Controls({cart, setIsActive}){
 }
 
 Controls.propTypes = {
-  cart: PropTypes.arrayOf(PropTypes.shape({
-    code: PropTypes.number,
-    title: PropTypes.string,
-    price: PropTypes.number,
-    count: PropTypes.number
-  })).isRequired,
+  cart: PropTypes.shape({
+    list: PropTypes.arrayOf(PropTypes.shape({
+      code: PropTypes.number,
+      title: PropTypes.string,
+      price: PropTypes.number,
+      count: PropTypes.number,
+    })),
+    googsCount: PropTypes.number,
+    totalSum: PropTypes.number,
+  }).isRequired,
   setIsActive: PropTypes.func
 };
 

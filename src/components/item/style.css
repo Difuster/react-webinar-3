@@ -3,10 +3,6 @@
   align-items: center;
 }
 
-.Item:first-child {
-  border-top: 1px dashed #CCCCCC;
-}
-
 .Item-code {
   padding: 20px 10px 20px 20px;
 }

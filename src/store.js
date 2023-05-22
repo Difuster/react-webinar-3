@@ -44,27 +44,40 @@ class Store {
    * Добавление товара
    */
   addItem(item) {
-    if(!this.state.cart.length) {
+    if(!this.state.cart.goodsCount) {
       this.setState({
         ...this.state,
-        cart: [...this.state.cart, {code: item.code, title: item.title, price: item.price, count: 1}]
+        cart: {
+          ...this.state.cart,
+          list: [...this.state.cart.list, {code: item.code, title: item.title, price: item.price, count: 1}],        
+          goodsCount: 1,
+          totalSum: this.state.cart.totalSum + item.price,
+        },
       })
     } else {
-      let product = this.state.cart.filter(prod => prod.code === item.code)[0];
+      let product = this.state.cart.list.filter(prod => prod.code === item.code)[0];
       if (product) {
         this.setState({
           ...this.state,
-          cart: this.state.cart.map(prod => {
-            if (prod.code === product.code) {
-              return {...prod, count: prod.count + 1};
-            }
-            return prod;
-          })
-        })
+          cart: {
+            ...this.state.cart,
+            list: this.state.cart.list.map(prod => {
+              if (prod.code === product.code) {
+                return {...prod, count: prod.count + 1};
+              }
+              return prod;
+            }),
+            totalSum: this.state.cart.totalSum + item.price,          
+        }})
       } else {
         this.setState({
           ...this.state,
-          cart: [...this.state.cart, {code: item.code, title: item.title, price: item.price, count: 1}]
+          cart: {
+            ...this.state.cart,
+            list: [...this.state.cart.list, {code: item.code, title: item.title, price: item.price, count: 1}],        
+            goodsCount: this.state.cart.goodsCount + 1,
+            totalSum: this.state.cart.totalSum + item.price,
+          },
         })
       }
     }
@@ -77,8 +90,12 @@ class Store {
   deleteItem(item) {
     this.setState({
       ...this.state,
-      cart: this.state.cart.filter(elem => elem.code !== item.code)
-    })
+      cart: {
+        ...this.state.cart,
+        list: this.state.cart.list.filter(elem => elem.code !== item.code),
+        goodsCount: this.state.cart.goodsCount - 1,
+        totalSum: this.state.cart.totalSum - item.count * item.price
+    }})
   };
 
   // /**
