@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import {cn as bem} from '@bem-react/classname';
 import {numberFormat} from "../../utils";
 import './style.css';
+import { useNavigate } from "react-router-dom";
 
 function Item(props){
+  const navigate = useNavigate();
 
   const cn = bem('Item');
 
@@ -15,12 +17,12 @@ function Item(props){
   return (
     <div className={cn()}>
       {/*<div className={cn('code')}>{props.item._id}</div>*/}
-      <div className={cn('title')}>
+      <div className={cn('title')} onClick={() => navigate(`/product/${props.item._id}`)}>
         {props.item.title}
       </div>
       <div className={cn('actions')}>
         <div className={cn('price')}>{numberFormat(props.item.price)} ₽</div>
-        <button onClick={callbacks.onAdd}>Добавить</button>
+        <button onClick={callbacks.onAdd}>{props.dictionary.buttons.add}</button>
       </div>
     </div>
   );

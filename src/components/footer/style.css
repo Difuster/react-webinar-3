@@ -1,0 +1,35 @@
+.Footer {
+  font-size: 16px;
+  text-align: right;
+  margin-top: 23px;
+  margin-right: 22px;
+  padding-bottom: 23px;
+}
+
+.Footer-item {
+  display: inline-block;
+  text-align: center;
+  margin-right: 2px;
+  cursor: pointer;
+  padding: 2px 5px;
+}
+
+.Footer-item:last-child {
+  margin-right: 0;
+}
+
+.Footer-item_active {
+  display: inline-block;
+  text-align: center;
+  margin-right: 2px;
+  padding: 2px 7px;
+  background-color: #0087E9;
+  color: #FFF;
+}
+
+.Footer-item_ellipsis {
+  display: inline-block;
+  text-align: center;
+  margin-right: 2px;
+  color: #CCCCCC;
+}

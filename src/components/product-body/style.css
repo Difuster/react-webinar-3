@@ -1,0 +1,16 @@
+.ProductBody {
+  font-size: 18px; 
+  line-height: 21px;
+  margin: 40px;
+}
+
+.ProductBody-specific {
+  margin-top: 20px;
+}
+
+.ProductBody-price {
+  margin-top: 20px;
+  margin-bottom: 23px;
+  font-size: 24px;
+  font-weight: bold;
+}
