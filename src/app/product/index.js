@@ -24,8 +24,10 @@ const Product = () => {
   
 
   useEffect(() => {
+    store.actions.preloader.open();
     store.actions.catalog.getProductData(id)
     .then(data => setProduct(data.result))
+    .then(() => store.actions.preloader.close());
   }, []);
 
   const callbacks = {

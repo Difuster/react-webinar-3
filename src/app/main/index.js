@@ -25,12 +25,17 @@ function Main() {
   const dictionary = getDictionary(select.language);
 
   useEffect(() => {
+    store.actions.preloader.open();
     store.actions.catalog.getPagesCount();
-    store.actions.catalog.load(0*10);
+    store.actions.catalog.load(0*10)
+    .then(() => store.actions.preloader.close());
+    
   }, []);
 
   useEffect(() => {
-    store.actions.catalog.load((select.activePage-1)*10);
+    store.actions.preloader.open();
+    store.actions.catalog.load((select.activePage-1)*10)
+    .then(() => store.actions.preloader.close());
   }, [select.activePage]);
 
   const callbacks = {

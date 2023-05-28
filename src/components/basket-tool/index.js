@@ -6,7 +6,6 @@ import './style.css';
 import { Link } from "react-router-dom";
 
 function BasketTool({sum, amount, onOpen, dictionary}) {
-  console.log(dictionary)
   const cn = bem('BasketTool');
 
   return (
